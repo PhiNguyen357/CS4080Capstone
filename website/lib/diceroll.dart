@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage>{
               onPressed: () async {
 
               //sound
-              await audio.setAsset('assets/roll.mp3');
+              await audio.setAsset('assets/rolling-dice.mp3');
               audio.play();
 
               //Roll Dice
