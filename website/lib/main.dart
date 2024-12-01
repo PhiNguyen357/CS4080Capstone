@@ -98,7 +98,8 @@ class _MyHomePageState extends State<MyHomePage>
               children: [
                 // Arrow pointing to the result
                 const Positioned(
-                  top: 120, // Adjust this value to ensure the arrow aligns with the top
+                  top:
+                      120, // Adjust this value to ensure the arrow aligns with the top
                   child: Icon(
                     Icons.arrow_drop_down,
                     size: 40,
@@ -120,9 +121,7 @@ class _MyHomePageState extends State<MyHomePage>
             ),
             const SizedBox(height: 20),
             Text(
-              _spinResult == 0
-                  ? 'Spinning...'
-                  : 'Spin Result: $_spinResult',
+              _spinResult == 0 ? 'Spinning...' : 'Spin Result: $_spinResult',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
             const SizedBox(height: 20),
@@ -140,7 +139,7 @@ class _MyHomePageState extends State<MyHomePage>
     return Container(
       width: 200,
       height: 200,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         shape: BoxShape.circle,
         color: Colors.deepPurple,
       ),
