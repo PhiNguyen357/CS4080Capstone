@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'pages/page1.dart'; // Wheel Page
-import 'pages/page2.dart';
-import 'pages/page3.dart';
+import 'pages/page1.dart'; // wheel
+import 'pages/page2.dart'; // calculator
+import 'pages/page3.dart'; // dice roll
+import 'pages/page4.dart'; // web demo
 
 void main() {
   runApp(const MyApp());
@@ -60,10 +61,10 @@ class HomePage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const Page2()),
+                  MaterialPageRoute(builder: (context) => Page2()),
                 );
               },
-              child: const Text('Go to Second Page'),
+              child: const Text('Calculator'),
             ),
             const SizedBox(height: 20),
             ElevatedButton(
@@ -73,7 +74,17 @@ class HomePage extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => const Page3()),
                 );
               },
-              child: const Text('Go to Third Page'),
+              child: const Text('Dice Roll'),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Page4()),
+                );
+              },
+              child: const Text('Web Demo'),
             ),
           ],
         ),
