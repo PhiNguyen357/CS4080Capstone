@@ -132,10 +132,10 @@ class _CalcutorScreenState extends State<CalcutorScreen> {
                       onPressed: () => onButtonPressed(button),
                       child: Text(
                         button,
-                        style: TextStyle(fontSize: 20), // Smaller font size
+                        style: TextStyle(fontSize: 20), 
                       ),
                       style: ElevatedButton.styleFrom(
-                        minimumSize: Size(60, 60), // Smaller button size
+                        minimumSize: Size(60, 60), 
                       ),
                     );
                   },
