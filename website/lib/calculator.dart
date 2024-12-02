@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(Calcutor());
+void main() => runApp(CalculatorApp());
 
-class Calcutor extends StatelessWidget {
+class CalculatorApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -11,21 +11,20 @@ class Calcutor extends StatelessWidget {
       home: Scaffold(
         backgroundColor: Colors.grey[200],
         body: Center(
-        home: CalcutorScreen(),
-          child: SimpleCalculatorScreen(),
+          child: CalculatorScreen(),
         ),
       ),
     );
   }
 }
 
-class CalcutorScreen extends StatefulWidget {
+class CalculatorScreen extends StatefulWidget {
   @override
-  _CalcutorScreenState createState() =>
-      _CalcutorScreenState();
+  _CalculatorScreenState createState() =>
+      _CalculatorScreenState();
 }
 
-class _CalcutorScreenState extends State<CalcutorScreen> {
+class _CalculatorScreenState extends State<CalculatorScreen> {
   double? num1;
   double? num2;
   String? operator;
@@ -76,74 +75,58 @@ class _CalcutorScreenState extends State<CalcutorScreen> {
 
   @override
   Widget build(BuildContext context) {
-      return Container(
-        width: 320, // Fixed width for the calculator
-            padding: EdgeInsets.all(16),
-        padding: EdgeInsets.all(16),
-            margin: EdgeInsets.symmetric(horizontal: 16),
-            decoration: BoxDecoration(
-        decoration: BoxDecoration(
-              color: Colors.white,
-          color: Colors.white,
-              borderRadius: BorderRadius.circular(16),
-          borderRadius: BorderRadius.circular(16),
-              boxShadow: [
-          boxShadow: [
-                BoxShadow(
-            BoxShadow(
-                  color: Colors.black26,
-              color: Colors.black26,
-                  blurRadius: 8,
-              blurRadius: 8,
-                  offset: Offset(0, 4),
-              offset: Offset(0, 4),
-                ),
-              ],
+    return Container(
+      width: 320,
+      padding: EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black26,
+            blurRadius: 8,
+            offset: Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            result,
+            style: TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
+          ),
+          SizedBox(height: 20),
+          GridView.builder(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 4, // Four buttons in a row
+              crossAxisSpacing: 8,
+              mainAxisSpacing: 8,
             ),
-          ),
-            ],
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                result,
-                style: TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 20),
-               GridView.builder(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 4, // Four buttons in a row
-                    crossAxisSpacing: 8,
-                    mainAxisSpacing: 8,
-                  ),
-                  itemCount: 16,
-                  itemBuilder: (context, index) {
-                    final buttons = [
-                      '7', '8', '9', '+',
-                      '4', '5', '6', '-',
-                      '1', '2', '3', '*',
-                      'C', '0', '=', '/'
-                    ];
-                    final button = buttons[index];
-                    return ElevatedButton(
-                      onPressed: () => onButtonPressed(button),
-                      child: Text(
-                        button,
-                        style: TextStyle(fontSize: 20), 
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        minimumSize: Size(60, 60), 
-                      ),
-                    );
-                  },
+            itemCount: 16,
+            itemBuilder: (context, index) {
+              final buttons = [
+                '7', '8', '9', '+',
+                '4', '5', '6', '-',
+                '1', '2', '3', '*',
+                'C', '0', '=', '/'
+              ];
+              final button = buttons[index];
+              return ElevatedButton(
+                onPressed: () => onButtonPressed(button),
+                child: Text(
+                  button,
+                  style: TextStyle(fontSize: 20),
                 ),
-              ),
-            ],
+                style: ElevatedButton.styleFrom(
+                  minimumSize: Size(60, 60),
+                ),
+              );
+            },
           ),
-        ),
+        ],
       ),
     );
   }
