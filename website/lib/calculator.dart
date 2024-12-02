@@ -7,8 +7,14 @@ class Calcutor extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Simple Calculator',
-      home: CalcutorScreen(),
+      title: 'Calculator',
+      home: Scaffold(
+        backgroundColor: Colors.grey[200],
+        body: Center(
+        home: CalcutorScreen(),
+          child: SimpleCalculatorScreen(),
+        ),
+      ),
     );
   }
 }
@@ -70,21 +76,31 @@ class _CalcutorScreenState extends State<CalcutorScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("Calculator")),
-      body: Center(
-        child: Container(
-          padding: EdgeInsets.all(16),
-          margin: EdgeInsets.symmetric(horizontal: 16),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(16),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black26,
-                blurRadius: 8,
-                offset: Offset(0, 4),
-              ),
+      return Container(
+        width: 320, // Fixed width for the calculator
+            padding: EdgeInsets.all(16),
+        padding: EdgeInsets.all(16),
+            margin: EdgeInsets.symmetric(horizontal: 16),
+            decoration: BoxDecoration(
+        decoration: BoxDecoration(
+              color: Colors.white,
+          color: Colors.white,
+              borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(16),
+              boxShadow: [
+          boxShadow: [
+                BoxShadow(
+            BoxShadow(
+                  color: Colors.black26,
+              color: Colors.black26,
+                  blurRadius: 8,
+              blurRadius: 8,
+                  offset: Offset(0, 4),
+              offset: Offset(0, 4),
+                ),
+              ],
+            ),
+          ),
             ],
           ),
           child: Column(
@@ -95,8 +111,7 @@ class _CalcutorScreenState extends State<CalcutorScreen> {
                 style: TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 20),
-              Flexible(
-                child: GridView.builder(
+               GridView.builder(
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
