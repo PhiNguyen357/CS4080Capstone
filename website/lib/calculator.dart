@@ -72,49 +72,63 @@ class _CalcutorScreenState extends State<CalcutorScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Calculator")),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            result,
-            style: TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
-          ),
-          SizedBox(height: 20),
-          Column(
-            children: [
-              for (var row in [
-                ['7', '8', '9'],
-                ['4', '5', '6'],
-                ['1', '2', '3'],
-                ['C', '0', '=']
-              ])
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: row
-                      .map((button) => ElevatedButton(
-                            onPressed: () => onButtonPressed(button),
-                            child: Text(button, style: TextStyle(fontSize: 24)),
-                            style: ElevatedButton.styleFrom(
-                              minimumSize: Size(70, 70),
-                            ),
-                          ))
-                      .toList(),
-                ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: ['+', '-', '*', '/']
-                    .map((button) => ElevatedButton(
-                          onPressed: () => onButtonPressed(button),
-                          child: Text(button, style: TextStyle(fontSize: 24)),
-                          style: ElevatedButton.styleFrom(
-                            minimumSize: Size(70, 70),
-                          ),
-                        ))
-                    .toList(),
+      body: Center(
+        child: Container(
+          padding: EdgeInsets.all(16),
+          margin: EdgeInsets.symmetric(horizontal: 16),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(16),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black26,
+                blurRadius: 8,
+                offset: Offset(0, 4),
               ),
             ],
           ),
-        ],
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                result,
+                style: TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 20),
+              Flexible(
+                child: GridView.builder(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 4, // Four buttons in a row
+                    crossAxisSpacing: 8,
+                    mainAxisSpacing: 8,
+                  ),
+                  itemCount: 16,
+                  itemBuilder: (context, index) {
+                    final buttons = [
+                      '7', '8', '9', '+',
+                      '4', '5', '6', '-',
+                      '1', '2', '3', '*',
+                      'C', '0', '=', '/'
+                    ];
+                    final button = buttons[index];
+                    return ElevatedButton(
+                      onPressed: () => onButtonPressed(button),
+                      child: Text(
+                        button,
+                        style: TextStyle(fontSize: 20), // Smaller font size
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: Size(60, 60), // Smaller button size
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
